@@ -45,7 +45,9 @@ export function CreateJobForm() {
   })
 
   function onSubmit(values: createAndEditJobType) {
+    console.log("working1",values)
     mutate(values)
+    console.log('working2')
   }
 
   return (

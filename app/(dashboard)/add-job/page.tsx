@@ -6,7 +6,7 @@ import {
   QueryClient,
 } from '@tanstack/react-query'
 
-function page() {
+function AddJob() {
   const queryClient = new QueryClient()
   return (
     <div>
@@ -17,4 +17,4 @@ function page() {
   )
 }
 
-export default page
+export default AddJob

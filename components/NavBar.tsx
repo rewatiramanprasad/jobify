@@ -1,6 +1,6 @@
 import React from 'react'
 import { ThemeToggle } from './ThemeToggle'
-import { UserButton, UserProfile } from '@clerk/nextjs'
+import { UserButton } from '@clerk/nextjs'
 import LinkDropdown from './LinkDropdown'
 
 function NavBar() {
