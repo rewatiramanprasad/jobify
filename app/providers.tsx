@@ -1,7 +1,20 @@
 import { ThemeProvider } from '@/components/theme-provider'
-import React from 'react'
+import { Toaster } from '@/components/ui/sonner'
+import React, { useState } from 'react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 function Providers({ children }: { children: React.ReactNode }) {
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 60 * 1000 * 5,
+          },
+        },
+      })
+  )
   return (
     <>
       <ThemeProvider
@@ -10,7 +23,11 @@ function Providers({ children }: { children: React.ReactNode }) {
         enableSystem
         disableTransitionOnChange
       >
-        {children}
+        <Toaster />
+        <QueryClientProvider client={queryClient}>
+          {children}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
       </ThemeProvider>
     </>
   )
