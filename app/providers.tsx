@@ -1,3 +1,4 @@
+'use client'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
 import React, { useState } from 'react'

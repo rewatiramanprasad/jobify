@@ -2,7 +2,6 @@
 import { Button } from '@/components/ui/button'
 import { usePathname } from 'next/navigation'
 import React from 'react'
-
 import Link from 'next/link'
 import Image from 'next/image'
 import Logo from '@/assets/logo.svg'
@@ -18,7 +17,7 @@ function Sidebar() {
       <div className="flex flex-col gap-y-4 mt-20">
         {NavLink.map((link) => {
           const isActive = link.link === pathname
-          const variants = isActive ? 'default' : 'secondary'
+          const variants = isActive ? 'default' : 'link'
           return (
             <Button
               className="w-full"
