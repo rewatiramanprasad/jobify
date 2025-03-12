@@ -23,6 +23,7 @@ export enum JobMode {
   Internship = 'internship',
 }
 
+
 export const createAndEditJobSchema = z.object({
   position: z.string().min(2, {
     message: 'Position must be at least 2 characters.',
