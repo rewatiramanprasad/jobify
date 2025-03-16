@@ -96,3 +96,24 @@ export async function getAllJobAction({
     return { jobs: [], count: 0, page: 1, totalPages: 0 }
   }
 }
+
+export async function deleteJobAction({
+  id,
+}: {
+  id: string
+}): Promise<JobType | null> {
+  const userId = await authenticateAndRedirect()
+
+  try {
+    const response = await db.job.delete({
+      where: {
+        id: id,
+        clerkId: userId,
+      },
+    })
+    return response
+  } catch (error) {
+    console.error(error)
+    return null
+  }
+}
