@@ -1,3 +1,4 @@
+'use client'
 import { getAllJobAction } from '@/utils/actions'
 import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
@@ -20,7 +21,7 @@ function JobList() {
     <>
       <div className="grid md:grid-cols-2  gap-8">
         {jobs.map((job) => (
-          <JobCard job={job} />
+          <JobCard key={job.id} job={job} />
         ))}
       </div>
     </>
