@@ -141,3 +141,29 @@ export async function getSingleJobAction({
   }
   return job
 }
+export async function updateJobAction({
+  id,
+  values,
+}: {
+  id: string
+  values: createAndEditJobType
+}): Promise<JobType | null> {
+  let job: JobType | null = null
+  const userId = await authenticateAndRedirect()
+  try {
+    job = await db.job.update({
+      where: {
+        id,
+        clerkId: userId,
+      },
+      data: {
+        ...values,
+      },
+    })
+  } catch (error) {
+    console.error(error)
+    job = null
+  }
+
+  return job
+}
