@@ -117,3 +117,27 @@ export async function deleteJobAction({
     return null
   }
 }
+
+export async function getSingleJobAction({
+  id,
+}: {
+  id: string
+}): Promise<JobType | null> {
+  let job: JobType | null = null
+  const userId = await authenticateAndRedirect()
+  try {
+    job = await db.job.findFirst({
+      where: {
+        id: id,
+        clerkId: userId,
+      },
+    })
+  } catch (error) {
+    console.error(error)
+    job = null
+  }
+  if (!job) {
+    redirect('/jobs')
+  }
+  return job
+}
