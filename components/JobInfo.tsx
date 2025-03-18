@@ -1,5 +1,4 @@
 import React from 'react'
-import { Button } from './ui/button'
 
 function jobInfo({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (

@@ -4,13 +4,12 @@ import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import React from 'react'
 import JobCard from './JobCard'
-import ButtonContainer from './ButtonContainer'
 import ComplexButtonContainer from './ComplexButtonContainer'
 
 function JobList() {
   const searchParams = useSearchParams()
-  const search = searchParams.get('search') || ''
-  const jobStatus = searchParams.get('jobStatus') || 'all'
+  // const search = searchParams.get('search') || ''
+  // const jobStatus = searchParams.get('jobStatus') || 'all'
   const page = Number(searchParams.get('page') || '1')
   const { data, isPending } = useQuery({
     queryKey: ['jobs'],

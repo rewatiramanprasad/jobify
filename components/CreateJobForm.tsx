@@ -10,7 +10,7 @@ import {
   JobMode,
 } from '@/utils/types'
 import { CustomFormField, CustomFormSelect } from './FormComponents'
-import { QueryClient, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createJobAction } from '@/utils/actions'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
@@ -45,7 +45,7 @@ export function CreateJobForm() {
   })
 
   function onSubmit(values: createAndEditJobType) {
-    console.log("working1",values)
+    console.log('working1', values)
     mutate(values)
     console.log('working2')
   }

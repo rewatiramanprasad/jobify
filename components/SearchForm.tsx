@@ -1,5 +1,5 @@
 'use client'
-import React, { useReducer } from 'react'
+import React from 'react'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import {
@@ -7,7 +7,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
@@ -24,7 +23,7 @@ function SearchForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    let params = new URLSearchParams()
+    const params = new URLSearchParams()
     const formData = new FormData(e.currentTarget)
     const search = formData.get('search') as string
     const jobStatus = formData.get('jobStatus') as string
