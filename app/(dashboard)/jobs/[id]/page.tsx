@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query'
 import React from 'react'
 
-async function jobDetailsPage({ params }: { params: { id: string } }) {
+async function jobDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const queryClient = new QueryClient()
 
