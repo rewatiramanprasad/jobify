@@ -1,10 +1,10 @@
 'use server'
 import { redirect } from 'next/navigation'
 import { createAndEditJobSchema, createAndEditJobType, JobType } from './types'
-import db from '@/utils/db'
+import db from '@/prisma/db'
 import { auth } from '@clerk/nextjs/server'
 import { Prisma } from '@prisma/client'
-import prisma from '@/utils/db'
+// import prisma from '@/utils/db'
 import dayjs from 'dayjs'
 
 export async function authenticateAndRedirect(): Promise<string> {
@@ -20,6 +20,7 @@ export async function createJobAction(
 ): Promise<JobType | null> {
   //   await new Promise((resolve) => setTimeout(resolve, 3000))
   const userId = await authenticateAndRedirect()
+  console.log(userId)
   try {
     createAndEditJobSchema.parse(values)
     const job: JobType = await db.job.create({
@@ -211,7 +212,7 @@ export async function getChartsDataAction(): Promise<
   const userId = await authenticateAndRedirect()
   const sixMonthsAgo = dayjs().subtract(6, 'month').toDate()
   try {
-    const jobs = await prisma.job.findMany({
+    const jobs = await db.job.findMany({
       where: {
         clerkId: userId,
         createdAt: {
