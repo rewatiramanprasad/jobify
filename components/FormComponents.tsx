@@ -35,7 +35,7 @@ export function CustomFormField({ name, control }: CustomFormFieldProps) {
         <FormItem>
           <FormLabel className="capitalize">{name}</FormLabel>
           <FormControl>
-            <Input className="bg-white" {...field} />
+            <Input className="bg-white text-black" {...field} />
           </FormControl>
           <FormMessage />
         </FormItem>
@@ -58,7 +58,7 @@ export function CustomFormSelect({
         <FormItem>
           <FormLabel className="capitalize">{labelText || name}</FormLabel>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
-            <FormControl className=" lg:w-75  bg-white">
+            <FormControl className=" w-full bg-white text-black">
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
