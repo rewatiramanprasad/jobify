@@ -36,10 +36,10 @@ function SearchForm() {
   return (
     <main className=" bg-muted p-8">
       <form className=" grid lg:grid-cols-3 gap-6" onSubmit={handleSubmit}>
-        <Input type="text" name="search" defaultValue={search} />
+        <Input type="text" name="search" className='bg-white text-black' defaultValue={search} />
 
         <Select name="jobStatus" defaultValue={jobStatus}>
-          <SelectTrigger className="w-[250px]">
+          <SelectTrigger className="w-[250px] bg-white text-black">
             <SelectValue placeholder="all" />
           </SelectTrigger>
           <SelectContent>
