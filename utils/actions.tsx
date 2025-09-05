@@ -55,10 +55,11 @@ export async function getAllJobAction({
   page: number
   totalPages: number
 }> {
+  const demoUserId = 'user_2tdC7TWok9VThdh57Zz0Nu3GWw8'
   const userId = await authenticateAndRedirect()
   try {
     let whereClause: Prisma.JobWhereInput = {
-      clerkId: userId,
+      OR: [{ clerkId: demoUserId }, { clerkId: userId }],
     }
     if (search) {
       whereClause = {
