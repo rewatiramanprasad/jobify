@@ -108,12 +108,13 @@ export async function deleteJobAction({
   id: string
 }): Promise<JobType | null> {
   const userId = await authenticateAndRedirect()
+  const demoUserId = 'user_2tdC7TWok9VThdh57Zz0Nu3GWw8'
 
   try {
     const response = await db.job.delete({
       where: {
         id: id,
-        clerkId: userId,
+        OR: [{ clerkId: demoUserId }, { clerkId: userId }],
       },
     })
     return response
@@ -130,11 +131,13 @@ export async function getSingleJobAction({
 }): Promise<JobType | null> {
   let job: JobType | null = null
   const userId = await authenticateAndRedirect()
+  const demoUserId = 'user_2tdC7TWok9VThdh57Zz0Nu3GWw8'
+
   try {
     job = await db.job.findFirst({
       where: {
         id: id,
-        clerkId: userId,
+        OR: [{ clerkId: demoUserId }, { clerkId: userId }],
       },
     })
   } catch (error) {
@@ -155,11 +158,13 @@ export async function updateJobAction({
 }): Promise<JobType | null> {
   let job: JobType | null = null
   const userId = await authenticateAndRedirect()
+  const demoUserId = 'user_2tdC7TWok9VThdh57Zz0Nu3GWw8'
+
   try {
     job = await db.job.update({
       where: {
         id,
-        clerkId: userId,
+        OR: [{ clerkId: demoUserId }, { clerkId: userId }],
       },
       data: {
         ...values,
@@ -178,11 +183,12 @@ export async function getStatsAction(): Promise<{
   declined: number
 }> {
   const userId = await authenticateAndRedirect()
+  const demoUserId = 'user_2tdC7TWok9VThdh57Zz0Nu3GWw8'
 
   try {
     const stats = await db.job.groupBy({
       where: {
-        clerkId: userId,
+        OR: [{ clerkId: demoUserId }, { clerkId: userId }],
       },
       by: ['status'],
       _count: {
@@ -211,11 +217,13 @@ export async function getChartsDataAction(): Promise<
   Array<{ date: string; count: number }>
 > {
   const userId = await authenticateAndRedirect()
+  const demoUserId = 'user_2tdC7TWok9VThdh57Zz0Nu3GWw8'
+
   const sixMonthsAgo = dayjs().subtract(6, 'month').toDate()
   try {
     const jobs = await db.job.findMany({
       where: {
-        clerkId: userId,
+        OR: [{ clerkId: demoUserId }, { clerkId: userId }],
         createdAt: {
           gte: sixMonthsAgo,
         },
